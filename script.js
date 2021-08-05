@@ -34,7 +34,7 @@ let game = function (randomNumber) {
                 alert('Game over');
                 return false;
             } else {
-                game(start())
+                game(start());
             }
         }
         else{
@@ -58,7 +58,7 @@ let game = function (randomNumber) {
             }
         }
     }
-    return "gameover";
+    return "gameoverr";
 };
 
 game(start());
