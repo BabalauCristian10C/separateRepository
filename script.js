@@ -30,4 +30,5 @@ let game = function (randomNum) {
         return false;
     }
 };
+
 game(start());
