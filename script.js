@@ -1,5 +1,4 @@
 'use strict';
-let y = 5;
 
 
 let start = function() {
@@ -13,29 +12,22 @@ let start = function() {
 let game = function (randomNum) {
     console.log(randomNum);
     let userAnswer = prompt("Гадай", "1");
-    while (userAnswer !== randomNum) {
-        console.log(userAnswer);
-        if (userAnswer === null){
-            alert('Game over');
-            return false;
-        }
-        else if (isNaN(+userAnswer) || +userAnswer > 100) {
-            alert("Введи число");
-            userAnswer = prompt("Гадай", "1");
-            console.log(userAnswer);
-        }
-        else {
-            if(+userAnswer < randomNum) {
-                alert("число больше");
-                userAnswer = prompt("Гадай", "1");
-            } else if (+userAnswer > randomNum) {
-                alert("число меньше");
-                userAnswer = prompt("Гадай", "1");
-            } else {
-                alert("Угадал");
-                break;
-            }
-        }
+    console.log(userAnswer);
+    if (+userAnswer === randomNum) {
+        alert('Поздравляю, Вы угадали!!!');
+        return true; 
+    } else if (+userAnswer > randomNum) {
+        alert("The number is smaller");
+        return game(randomNum);
+    } else if (+userAnswer < randomNum && userAnswer !== null) {
+        alert("The number is bigger");
+        return game(randomNum);
+    } else if(isNaN(+userAnswer)) {
+        alert("Введи число!");
+        return game(randomNum);
+    } else if(userAnswer === null){
+        alert("Game over");
+        return false;
     }
 };
 game(start());
