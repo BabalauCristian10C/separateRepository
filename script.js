@@ -6,24 +6,37 @@ function randomNumber(){
 
 let game = function () {
     alert("The game started!");
-    let randomNum = randomNumber();
-    console.log(randomNum);
+    let randomNum = randomNumber(),
+        tries = 10;
 
+    console.log(randomNum);
+    
     let mainCicle = (function () {
-        let userAnswer = prompt("Гадай", "1");
+        let userAnswer = prompt("Гадай", "1"),
+            startOver = function (alertText) {
+                let startOver = confirm(alertText);
+                if (startOver) {
+                    tries = 10;
+                    return mainCicle();
+                } else {
+                    return;
+                }
+            };
+
         if (+userAnswer === randomNum) {
-            alert('Поздравляю, Вы угадали!!!');
-            return;
-        } else if (+userAnswer > randomNum) {
-            alert("The number is smaller");
+            return startOver('Congrats you won, do you want to strat again?');
+        } else if (+userAnswer > randomNum && userAnswer !== null) {
+            tries--;
+            alert(`The number is smaller, there are left ${ tries } attemps`);
         } else if (+userAnswer < randomNum && userAnswer !== null) {
-            alert("The number is bigger");
+            tries--;
+            alert(`The number is bigger , there are left ${ tries } attemps`);
         } else if(isNaN(+userAnswer)) {
-            alert("Введи число!");
-        } else if(userAnswer === null){
-            alert("Game over");
-            return;
-        }
+            alert(`Input a number!`);
+        } else if(userAnswer === null || startOver === false){
+            alert(`Game over`);
+            return startOver("Do you wish to try again?");
+        } 
         mainCicle();
     });
     mainCicle();
