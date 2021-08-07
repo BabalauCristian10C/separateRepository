@@ -1,18 +1,22 @@
 'use strict';
 
+alert("Угадай число от 1 до 100");
 
-let start = function() {
-    alert("Угадай число от 1 до 100");
-    function randomNumber(){
-        return Math.ceil(Math.random() * (100 - 1) + 1);
-    }
-    return randomNumber();
-};
 
-let game = function (randomNum) {
+function randomNumber(){
+    return Math.ceil(Math.random() * (100 - 1) + 1);
+}
+
+let game = function (randomNumber) {
+    let randomNum = randomNumber;
     console.log(randomNum);
-    let userAnswer = prompt("Гадай", "1");
-    console.log(userAnswer);
+    
+    let userAnswer = (function () {
+        return prompt("Гадай", "1");
+    }());
+
+    
+
     if (+userAnswer === randomNum) {
         alert('Поздравляю, Вы угадали!!!');
         return true; 
@@ -31,4 +35,4 @@ let game = function (randomNum) {
     }
 };
 
-game(start());
+game(randomNumber());
